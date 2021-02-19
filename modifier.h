@@ -4,8 +4,6 @@
 using namespace std;
 
 namespace COLOR {
-    const string endc = "\033[0m";
-
     enum CODE {
         BLACK   =   30,
         RED     =   31,
@@ -26,11 +24,14 @@ namespace COLOR {
     };
     class modifier {
     public:
-        modifier(CODE color) : m_color(color) {};
+        modifier(CODE color) : color(color) {};
         modifier() = default;
-
+        
+        void setColor(CODE color);
+        void resetColor(void);
+        static const string reset;
         friend ostream& operator<<(ostream& os, modifier modifi);
     private:
-        CODE m_color = WHITE;
+        CODE color = WHITE;
     };
 }
